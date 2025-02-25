@@ -2,6 +2,7 @@ package com.bridgelabz.employeepayrollapp.controllers;
 
 import com.bridgelabz.employeepayrollapp.entities.Employee;
 import com.bridgelabz.employeepayrollapp.services.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public Employee addEmployee(@RequestParam String name, @RequestParam String department, @RequestParam Double salary ){
+    public Employee addEmployee(@Valid @RequestParam String name,@Valid @RequestParam String department,@Valid @RequestParam Double salary ){
         employee.setName(name);
         employee.setId(null);
         employee.setSalary(salary);
@@ -42,7 +43,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/update/{id}")
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+    public Employee updateEmployee(@PathVariable Long id,@Valid @RequestBody Employee employee) {
         return employeeService.updateEmployee(id, employee);
     }
 
